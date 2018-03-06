@@ -1,16 +1,45 @@
+# sudo: false
+# language: cpp
+# compiler:
+#   - g++
+# script: 
+#   - cd ./app_common/
+#   - make
+#   - cd ./bin
+#   - ./test_*
+# os:
+#   - linux
+
 sudo: false
+dist: trusty
 language: cpp
-compiler:
-  - g++
-script: 
-  - cd ./app_common/
-  - make
-  - cd ./bin
-  - ./test_*
-os:
-  - linux
+compiler: 
+    - g++
 
+python:
+    - "2.7"
 
+cache:
+    directories:
+        - "~/.libmath"
+
+install:
+    - pip install -U platformio
+    - platformio update
+    - pio lib install "RadioHead"
+
+script:
+    - cd ./app_mega/
+    - platformio ci --verbose 
+    - cd ../app_common/
+    - make 
+    - cd ./bin/
+    - ./test_*
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
 
 # Continuous Integration (CI) is the practice, in software
 # engineering, of merging all developer working copies with a shared mainline
