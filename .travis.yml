@@ -17,14 +17,14 @@ compiler:
     - g++
 
 python:
-    - "2.7"
+    - "3.6"
 
 cache:
     directories:
         - "~/.libmath"
 
 install:
-    - pip install -U platformio
+    - pip3 install -U platformio
     - platformio update
     - pio lib install "RadioHead"
 
