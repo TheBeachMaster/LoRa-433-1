@@ -31,7 +31,7 @@ install:
 
 script:
     - cd ./app_mega/
-    - sudo platformio ci --verbose 
+    - sudo platformio ci --verbose .
     - cd ../app_common/
     - sudo make 
     - cd ./bin/
