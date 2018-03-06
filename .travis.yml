@@ -24,7 +24,8 @@ cache:
         - "~/.libmath"
 
 install:
-    - pip3 install -U platformio
+    - apt-get -y install python3-pip python-dev
+    - pip install -U platformio
     - platformio update
     - pio lib install "RadioHead"
 
