@@ -30,7 +30,7 @@ install:
     - sudo pio lib install "RadioHead"
 
 script:
-    - sudo platformio ci --verbose --project-conf=app_mega/platformio.ini
+    - sudo PLATFORMIO_CI_SRC=app_mega/src/  --verbose --board megaatmega --lib="." 
     - cd ./app_common/
     - sudo make 
     - cd ./bin/
