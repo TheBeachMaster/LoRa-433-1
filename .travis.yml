@@ -15,11 +15,10 @@ install:
     - sudo apt-get -y install python-pip python-dev
     - sudo pip install -U platformio
     - sudo platformio update
-    - sudo pio lib install "RadioHead"
 
 script:
-    - sudo platformio ci app_mega/src --board=megaatmega2560 --lib="." --lib="app_mega/lib/"
-    - sudo platformio ci app_uno/src --board=uno --lib="." --lib="app_uno/lib/"
+    - sudo platformio ci app_mega/src --board=megaatmega2560 --lib="." --lib="app_mega/lib/" --lib="app_mega/lib/AdafruitRadioHead"
+    - sudo platformio ci app_uno/src --board=uno --lib="." --lib="app_uno/lib/" --lib="app_uno/lib/AdafruitRadioHead"
     - cd ./app_common/
     - sudo make 
     - cd ./bin/
