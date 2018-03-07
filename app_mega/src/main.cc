@@ -81,8 +81,8 @@ void loop()
               Serial.print("]: ");
               Serial.println((char*)buf);
               Serial.print("RSSI: ");
-              Serial.println(rf69.lastRssi(), DEC);
-            if (strstr((char *)buf, "Hello World")) ]
+              Serial.println(rh_rf69.lastRssi(), DEC);
+            if (strstr((char *)buf, "Hello World"))
             {
               uint8_t data[] = "And hello back to you";
               rf69.send(data, sizeof(data));
@@ -92,6 +92,7 @@ void loop()
               {
                 Serial.println("recv failed");
               }
+          }
         }
 }
 
