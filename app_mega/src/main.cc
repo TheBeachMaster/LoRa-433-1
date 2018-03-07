@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "libmath.h"
 #include <SPI.h>
 #include <RH_RF69.h>
@@ -6,11 +7,6 @@
 // RH_RF69 Server
 RH_RF69 rf69(4, 3); 
 
-int modulate_values(int client_vals)
-{
-    int values = analog_read(sensor_pin);
-    return values;
-}
 
 void setup(void)
 {
