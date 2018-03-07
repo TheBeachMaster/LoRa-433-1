@@ -1,63 +1,97 @@
 #include <Arduino.h>
 #include "libmath.h"
 #include <SPI.h>
-#include <RH_RF69.h>
+#include "RH_RF69.h"
 
 
-// RH_RF69 Server
-RH_RF69 rf69(4, 3); 
+#define RF69_FREQ 915.0
+#define CS 4
+#define INT_PIN 3
+#define RST_PIN 2
+#define LED_IND 13
+
+RH_RF69 rh_rf69(CS, INT_PIN);
+
+int16_t packetNum = 0;
 
 
 void setup(void)
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
         while (!Serial);
 
-    if (!rf69.init())
-        Serial.println("init failed");
-    
-    if (!rf69.setFrequency(433.0))
-        Serial.println("setFrequency failed");
-    
+    pinMode(LED_IND, OUTPUT);
+    pinMode(RST_PIN, OUTPUT);
+    digitalWrite(RST_PIN, LOW);
+
+    digitalWrite(RST_PIN, 1);
+    delay(10);
+    digitalWrite(RST_PIN, 0);
+    delay(10);
+
+    if(!rh_rf69.init())
+    {
+        digitalWrite(LED_IND, 1);
+        delay(3000);
+        digitaWrite(LED_IND, 0);
+        delay(700);
+        digitalWrite(LED_IND, 1);
+        delay(2000);
+        digitaWrite(LED_IND, 0);
+        delay(800);
+        digitalWrite(LED_IND, 1);
+        delay(1000);
+        digitaWrite(LED_IND, 0);
+        while(1);
+    }
+
+    digitalWrite(LED_IND, 0);
+    delay(500);
+    digitalWrite(LED_IND, 1);
+    delay(3000);
+    digitaWrite(LED_IND, 0);
+
+    if (!rh_rf69.setFrequency(RF69_FREQ))
+        {
+            digitalWrite(LED_IND, 1);
+            delay(7000);
+            digitaWrite(LED_IND, 0);
+        }
+    rh_rf69.setTxPower(20, true);
+
     uint8_t key[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
                     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
     
-    rf69.setEncryptionKey(key);
-  
-#if 0
-  // For compat with RFM69 Struct_send
-  rf69.setModemConfig(RH_RF69::GFSK_Rb250Fd250);
-  rf69.setPreambleLength(3);
-  uint8_t syncwords[] = { 0x2d, 0x64 };
-  rf69.setSyncWords(syncwords, sizeof(syncwords));
-  rf69.setEncryptionKey((uint8_t*)"thisIsEncryptKey");
-#endif
+    rh_rf69.setEncryptionKey(key);
+
 }
 
 void loop()
 {
-
-      if (rf69.available())
-  { 
-    uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
-    uint8_t len = sizeof(buf);
-    if (rf69.recv(buf, &len))
-    {
-      RH_RF69::printBuffer("request: ", buf, len);
-      Serial.print("got request: ");
-      Serial.println((char*)buf);
-      Serial.print("RSSI: ");
-      Serial.println(rf69.lastRssi(), DEC);
-      uint8_t data[] = "Received";
-      rf69.send(data, sizeof(data));
-      rf69.waitPacketSent();
-      Serial.println("Sent a reply");
-    }
-    else
-    {
-      Serial.println("recv failed");
-    }
-  }
-
+      if (rh_rf69.available())
+        { 
+          uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
+          uint8_t len = sizeof(buf);
+          if (rh_rf69.recv(buf, &len))
+          {
+            if (!len) return;
+              buf[len] = 0;
+              Serial.print("Received [");
+              Serial.print(len);
+              Serial.print("]: ");
+              Serial.println((char*)buf);
+              Serial.print("RSSI: ");
+              Serial.println(rf69.lastRssi(), DEC);
+            if (strstr((char *)buf, "Hello World")) ]
+            {
+              uint8_t data[] = "And hello back to you";
+              rf69.send(data, sizeof(data));
+              rf69.waitPacketSent();
+              Serial.println("Sent a reply");
+            }else
+              {
+                Serial.println("recv failed");
+              }
+        }
 }
 
