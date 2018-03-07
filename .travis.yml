@@ -19,6 +19,7 @@ install:
 
 script:
     - sudo platformio ci app_mega/src --board=megaatmega2560 --lib="." --lib="app_mega/lib/"
+    - sudo platformio ci app_uno/src --board=uno --lib="." --lib="app_uno/lib/"
     - cd ./app_common/
     - sudo make 
     - cd ./bin/
