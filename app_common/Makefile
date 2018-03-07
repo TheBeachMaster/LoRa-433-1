@@ -20,4 +20,5 @@ clean:
 	@rm -rf ${OUT_PATH}
 
 test: 
-	@bin/test_*
+	cd ./bin/
+	./test_*
