@@ -7,11 +7,6 @@
 // RH_RF69 Server
 RH_RF69 rf69(4, 3); 
 
-int modulate_values(int client_vals)
-{
-    int values = analog_read(client_vals);
-    return values;
-}
 
 void setup(void)
 {
