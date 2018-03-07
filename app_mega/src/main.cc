@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "libmath.h"
 #include <SPI.h>
 #include <RH_RF69.h>
