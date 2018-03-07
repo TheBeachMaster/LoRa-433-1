@@ -18,7 +18,7 @@ install:
     - sudo pio lib install "RadioHead"
 
 script:
-    - sudo PLATFORMIO_CI_SRC=app_mega/src/  -v --board megaatmega2560 --lib="." 
+    - sudo PLATFORMIO_CI_SRC=app_mega/src/  -v --board=megaatmega2560 --lib="." 
     - cd ./app_common/
     - sudo make 
     - cd ./bin/
