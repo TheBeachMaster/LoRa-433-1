@@ -85,8 +85,8 @@ void loop()
             if (strstr((char *)buf, "Hello World"))
             {
               uint8_t data[] = "And hello back to you";
-              rf69.send(data, sizeof(data));
-              rf69.waitPacketSent();
+              rh_rf69.send(data, sizeof(data));
+              rh_rf69.waitPacketSent();
               Serial.println("Sent a reply");
             }else
               {
