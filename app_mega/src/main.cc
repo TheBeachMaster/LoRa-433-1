@@ -9,7 +9,7 @@ RH_RF69 rf69(4, 3);
 
 int modulate_values(int client_vals)
 {
-    int values = analog_read(sensor_pin);
+    int values = analog_read(client_vals);
     return values;
 }
 
