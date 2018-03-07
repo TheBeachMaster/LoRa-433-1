@@ -33,15 +33,15 @@ void setup(void)
     {
         digitalWrite(LED_IND, 1);
         delay(3000);
-        digitaWrite(LED_IND, 0);
+        digitalWrite(LED_IND, 0);
         delay(700);
         digitalWrite(LED_IND, 1);
         delay(2000);
-        digitaWrite(LED_IND, 0);
+        digitalWrite(LED_IND, 0);
         delay(800);
         digitalWrite(LED_IND, 1);
         delay(1000);
-        digitaWrite(LED_IND, 0);
+        digitalWrite(LED_IND, 0);
         while(1);
     }
 
@@ -49,13 +49,13 @@ void setup(void)
     delay(500);
     digitalWrite(LED_IND, 1);
     delay(3000);
-    digitaWrite(LED_IND, 0);
+    digitalWrite(LED_IND, 0);
 
     if (!rh_rf69.setFrequency(RF69_FREQ))
         {
             digitalWrite(LED_IND, 1);
             delay(7000);
-            digitaWrite(LED_IND, 0);
+            digitalWrite(LED_IND, 0);
         }
     rh_rf69.setTxPower(20, true);
 
