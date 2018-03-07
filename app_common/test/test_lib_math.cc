@@ -10,7 +10,7 @@ int test_addition()
     int b = 40;
     int expect = 45;
     int res = math_ops.add(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -22,7 +22,7 @@ int test_subtraction()
     int b = 30;
     int expect = 10;
     int res = math_ops.sub(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -34,7 +34,7 @@ int test_division()
     int b = 4;
     int expect = 25;
     int res = math_ops.div(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -45,7 +45,7 @@ int test_square()
     int a = 5;
     int expect = 25;
     int res = math_ops.sqr(a);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -57,7 +57,7 @@ int test_improper_subtraction()
     int b = 70;
     int expect = 0;
     int res = math_ops.sub(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -69,7 +69,7 @@ int test_return_0_on_0_division()
     int b = 50;
     int expect = 0;
     int res = math_ops.div(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
@@ -81,7 +81,7 @@ int test_allow_negative_numbers_multiplication()
     int b = -8;
     int expect = 32;
     int res = math_ops.mult(a, b);
-    IS_TRUE(res == expect);
+    IS_EQUAL(res , expect);
     END_IT
 }
 
