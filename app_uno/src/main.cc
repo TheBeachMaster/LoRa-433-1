@@ -87,7 +87,14 @@ void loop() {
     if (rf69.recv(buf, &len)) {
       Serial.print("Got a reply: ");
       Serial.println((char*)buf);
-      Blink(ledpin, 50, 3); //blink LED 3 times, 50ms between blinks
+     
+    for (byte i=0; i<loops; i++)  {
+    digitalWrite(ledpin,HIGH);
+    delay(500);
+    digitalWrite(ledpin,LOW);
+    delay(500);
+  }
+
     } else {
       Serial.println("Receive failed");
     }
@@ -96,11 +103,4 @@ void loop() {
   }
 }
 
-void Blink(byte PIN, byte DELAY_MS, byte loops) {
-  for (byte i=0; i<loops; i++)  {
-    digitalWrite(PIN,HIGH);
-    delay(DELAY_MS);
-    digitalWrite(PIN,LOW);
-    delay(DELAY_MS);
-  }
-}
+
