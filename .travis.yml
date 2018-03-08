@@ -17,8 +17,8 @@ install:
     - sudo platformio update
 
 script:
-    - sudo platformio ci app_mega/src --board=megaatmega2560 --lib="." --lib="app_mega/lib/" --lib="app_mega/lib/AdafruitRadioHead"
-    - sudo platformio ci app_uno/src --board=uno --lib="." --lib="app_uno/lib/" --lib="app_uno/lib/AdafruitRadioHead"
+    - sudo platformio ci app_mega/src --board=megaatmega2560 --lib="." --lib="app_mega/lib/libmath/" --lib="app_mega/lib/AdafruitRadioHead"
+    - sudo platformio ci app_uno/src --board=uno --lib="." --lib="app_uno/lib/libmath" --lib="app_uno/lib/AdafruitRadioHead"
     - cd ./app_common/
     - sudo make 
     - cd ./bin/
