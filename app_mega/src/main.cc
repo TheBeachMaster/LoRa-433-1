@@ -8,7 +8,7 @@
 #define CS 4
 #define INT_PIN 3
 #define RST_PIN 2
-#define LED_IND 13
+#define LED_IND 7
 
 RH_RF69 rh_rf69(CS, INT_PIN);
 
@@ -19,6 +19,8 @@ void setup(void)
 {
     Serial.begin(115200);
         while (!Serial);
+
+    Serial.println("Initializing Module");
 
     pinMode(LED_IND, OUTPUT);
     pinMode(RST_PIN, OUTPUT);
