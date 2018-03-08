@@ -29,6 +29,10 @@ void setup(void)
     digitalWrite(RST_PIN, 0);
     delay(10);
 
+    digitalWrite(LED_IND, 1);
+    delay(3000);
+    digitalWrite(LED_IND, 0);
+
     if(!rh_rf69.init())
     {
         digitalWrite(LED_IND, 1);
