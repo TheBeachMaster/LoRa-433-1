@@ -88,7 +88,7 @@ void loop() {
       Serial.print("Got a reply: ");
       Serial.println((char*)buf);
      
-    for (byte i=0; i<loops; i++)  {
+    for (byte i=0; i<3; i++)  {
     digitalWrite(ledpin,HIGH);
     delay(500);
     digitalWrite(ledpin,LOW);
