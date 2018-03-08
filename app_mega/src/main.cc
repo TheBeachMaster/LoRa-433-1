@@ -24,7 +24,6 @@ void setup(void)
 
     pinMode(LED_IND, OUTPUT);
     pinMode(RST_PIN, OUTPUT);
-    digitalWrite(RST_PIN, LOW);
 
     digitalWrite(RST_PIN, 1);
     delay(10);
@@ -48,6 +47,7 @@ void setup(void)
         digitalWrite(LED_IND, 1);
         delay(1000);
         digitalWrite(LED_IND, 0);
+        Serial.println("Failed to Initialize");
         while(1);
     }
 
@@ -62,6 +62,8 @@ void setup(void)
             digitalWrite(LED_IND, 1);
             delay(7000);
             digitalWrite(LED_IND, 0);
+
+            Serial.println("Unable to set Frequency");
         }
     rh_rf69.setTxPower(20, true);
 
