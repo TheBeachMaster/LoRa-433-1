@@ -19,10 +19,16 @@ void setup()
   while (!Serial);
   
   pinMode(ledpin, OUTPUT);
+  pinMode(RFM69_RST, OUTPUT);
+  digitalWrite(RFM69_RST, 1);
+  delay(10);
+  digitalWrite(RFM69_RST, 0);
+  delay(10);
   Serial.println("Initializing");
     digitalWrite(ledpin, HIGH);
     delay(1000);
     digitalWrite(ledpin, LOW);
+    Serial.println("Here");
   if (!rf69.init())
   {
     digitalWrite(ledpin, HIGH);
